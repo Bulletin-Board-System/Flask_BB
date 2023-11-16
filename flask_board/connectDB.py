@@ -10,6 +10,7 @@ def sign(uname, password):
         return "이미 해당 유저가 있습니다."
     else:
         cur.execute("insert into user (uname, password) values(%s, %s)".format(uname, password))
+        return "회원가입이 완료되었습니다."
     conn.commit()
     conn.close
 
@@ -20,9 +21,28 @@ def delete(status):
     conn.commit()
     conn.close
 
-def create(status):
+def create(uid, title, detail):
     conn = pymysql.connect(host='localhost', user='root', password='1234', db='bulletinboard')
     cur = conn.cursor()
-    cur.execute("insert into board(status) values('{0}')".format(status))
+    cur.execute("insert into board(uid, title, detail) values(%d, %s, %s)".format(uid, title, detail))
+    conn.commit()
+    conn.close
+    
+def update():
+    conn = pymysql.connect(host='localhost', user='root', password='1234', db='bulletinboard')
+    cur = conn.cursor()
+    cur.execute("update from board where status = '{0}'".format())
+    conn.commit()
+    conn.close
+    
+def login(uname, password):
+    check = None
+    conn = pymysql.connect(host='localhost', user='root', password='1234', db='bulletinboard')
+    cur = conn.cursor()
+    check = cur.execute("select uname, password from user")
+    if uname not in check or password not in check:
+        return "이름이나 비밀번호가 일치하지 않습니다."
+    else:
+        return "로그인 성공"
     conn.commit()
     conn.close

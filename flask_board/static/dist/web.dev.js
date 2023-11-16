@@ -3,10 +3,19 @@
 var sign = document.querySelector("#sign");
 var create = document.querySelector("#create");
 var del = document.querySelector("#del");
+var update = document.querySelector("#update");
 sign.addEventListener("click", function () {
   $.ajax({
     type: 'POST',
     url: '/sign'
+  }).fail(function (result) {
+    alert(result);
+  });
+});
+update.addEventListener("click", function () {
+  $.ajax({
+    type: 'UPDATE',
+    url: '/update'
   }).fail(function (result) {
     alert(result);
   });

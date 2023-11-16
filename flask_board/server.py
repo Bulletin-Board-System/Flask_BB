@@ -10,15 +10,21 @@ def home():
 @app.route('/create')
 def create():
     try:
-        connectDB.create('create')
-        return "success"
+        uid = request.form['uid']
+        title = request.form['title']
+        detail = request.form['detail']
+        data = connectDB.create(uid, title, detail)
+        return data
     except:
         return "error"
 
 @app.route('/login')
 def login():
     try:
-        connectDB.login
+        uname = request.form['uname']
+        password = request.form['password']
+        data = connectDB.login(uname, password)
+        return data
     except:
         return "error"
 
@@ -27,22 +33,26 @@ def sign():
     try:
         uname = request.form['uname']
         password = request.form['password']
-        connectDB.sign(uname, password)
-        return "success"
+        data = connectDB.sign(uname, password)
+        return data
     except:
         return "error"
 
 @app.route('/delete')
 def delete():
     try:
-        connectDB.delete('delete')
+        connectDB.delete()
         return "success"
     except:
         return "error"
 
 @app.route('/update')
 def update():
-    return render_template('index.html')
+    try:
+        connectDB.update()
+        return "success"
+    except:
+        return "error"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
