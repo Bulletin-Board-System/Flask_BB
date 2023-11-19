@@ -14,10 +14,10 @@ def sign(uname, password):
     conn.commit()
     conn.close
 
-def delete(status):
+def delete(bid):
     conn = pymysql.connect(host='localhost', user='root', password='1234', db='bulletinboard')
     cur = conn.cursor()
-    cur.execute("delete from board where status = '{0}'".format(status))
+    cur.execute("delete from board where bid = %d".format(bid))
     conn.commit()
     conn.close
 
@@ -28,10 +28,10 @@ def create(uid, title, detail):
     conn.commit()
     conn.close
     
-def update():
+def update(bid, title, detail):
     conn = pymysql.connect(host='localhost', user='root', password='1234', db='bulletinboard')
     cur = conn.cursor()
-    cur.execute("update from board where status = '{0}'".format())
+    cur.execute("update board set title = %s, detail = %s where bid = %d".format(title, detail, bid))
     conn.commit()
     conn.close
     
