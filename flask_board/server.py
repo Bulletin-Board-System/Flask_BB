@@ -13,8 +13,8 @@ def create():
         uid = request.form['uid']
         title = request.form['title']
         detail = request.form['detail']
-        data = connectDB.create(uid, title, detail)
-        return data
+        connectDB.create(uid, title, detail)
+        return "success"
     except:
         return "error"
 
