@@ -13,8 +13,8 @@ def create():
         uid = request.form['uid']
         title = request.form['title']
         detail = request.form['detail']
-        data = connectDB.create(uid, title, detail)
-        return data
+        connectDB.create(uid, title, detail)
+        return "success"
     except:
         return "error"
 
@@ -41,7 +41,8 @@ def sign():
 @app.route('/delete')
 def delete():
     try:
-        connectDB.delete()
+        bid = request.form['bid']
+        connectDB.delete(bid)
         return "success"
     except:
         return "error"
@@ -49,7 +50,10 @@ def delete():
 @app.route('/update')
 def update():
     try:
-        connectDB.update()
+        bid = request.form['bid']
+        title = request.form['title']
+        detail = request.form['detail']
+        connectDB.update(bid, title, detail)
         return "success"
     except:
         return "error"
