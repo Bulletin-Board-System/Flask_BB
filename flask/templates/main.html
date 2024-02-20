@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Main</title>
+        </head>
+        <body>
+            <h1>Main</h1>
+            <form action="/create" method="get"><button>create</button></form>
+            <hr>
+            <form action="/" method="get">
+                <input type="text" name="search" placeholder="search">
+                <input type="submit" name="submit" value="submit">
+            </form>
+            <table border="1">
+                <tr>
+                    <td>title</td>
+                    <td>creater</td>
+                    <td>date</td>
+                    <td>saw</td>
+                </tr>
+                {% for c in results %}
+                    <tr>
+                        <td><a href="{{ url_for('page', id=c[4]) }}">{{c[0]}}</a></td>
+                        <td>{{c[1]}}</td>
+                        <td>{{c[2]}}</td>
+                        <td>{{c[3]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </body>
+        </html>
