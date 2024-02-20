@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+</head>
+<body>
+    <h1>Create</h1>
+    <hr>
+    <form action="/create" method="post">
+        <h3>title</h3>
+        <input type="text" name="title" placeholder="title">
+        <br>
+        <h3>creater</h3>
+        <input type="text" name="creater" placeholder="creater">
+        <br><br>
+        <input type="checkbox" name="hide">
+        <label for="hide">hide</label>
+        <br>
+        <h3>details</h3>
+        <textarea name="details" cols="30" rows="10" placeholder="details"></textarea>
+        <br>
+        <input type="submit" name="submit" value="submit">
+        <button type="button" onclick="cancel()">cancel</button>
+    </form>
+    <script>
+        function cancel(){
+            history.go(-1);
+        }
+    </script>
+</body>
+</html>
